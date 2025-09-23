@@ -1,5 +1,5 @@
 ---
-title: "My First ML"
+title: "My First ML Project"
 date: 2025-09-23
 categories: [Machine Learning]
 tags: [machine learning]     # TAG names should always be lowercase
