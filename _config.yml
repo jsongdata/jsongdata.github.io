@@ -16,7 +16,7 @@ timezone:
 
 title: Jaekuk Song # the main title
 
-tagline: A text-focused Jekyll theme # it will display as the subtitle
+tagline: Jaekuk's playground # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
@@ -36,6 +36,7 @@ social:
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: Jaekuk Song
   email: jsongfoto@gmail.com # change to your email address
+  bio: Data Scientist | Georgia Tech Student
   links:
     # The first element serves as the copyright owner's link
     # - https://twitter.com/username # change to your Twitter homepage
@@ -100,7 +101,7 @@ theme_mode: # [light | dark]
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: /assets/img/profile/avatar.jpg
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
