@@ -39,7 +39,7 @@ I took 4 math, 7 statistics, and 9 computer science classes, and I also held 2 r
 
 ## Resume
 
-Refer to [Linkedin](www.linkedin.com/in/jay-song-data) or [pdf](../assets/info/cv_jae.pdf).
+Refer to [Linkedin](https://www.linkedin.com/in/jay-song-data) or [pdf](../assets/info/cv_jae.pdf)
 
 
 
