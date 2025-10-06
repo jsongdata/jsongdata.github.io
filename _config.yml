@@ -150,6 +150,10 @@ pwa:
     deny_paths:
       # - "/example"  # URLs match `<SITE_URL>/example/*` will not be cached by the PWA
 
+# Enable MathJax <--- 2025년10월6일 추가 되었음
+math:
+  provider: 'mathjax'
+
 paginate: 10
 
 # The base URL of your site
