@@ -21,10 +21,10 @@ During my college year at Ohio State, I took 4 math, 7 statistics, and 9 compute
   * Translated raw data into actionable insights that can support business improvement strategies
 
 * Honda America Inc. - Student ML Researcher
- * Built machine learning models to forecast next quarter profits
- * Engineered and pre-processed real-world datasets with up to 85% missing values
- * Developed a professional, executive-level presentation
- * Delivered findings to Honda’s financial and technical managers on-site
+  * Built machine learning models to forecast next quarter profits
+  * Engineered and pre-processed real-world datasets with up to 85% missing values
+  * Developed a professional, executive-level presentation
+  * Delivered findings to Honda’s financial and technical managers on-site
  
 * FISHER COLLEGE OF BUSINESS AT OHIO STATE UNIVERSITY - Research Assistant
 	*	Used Python and the NLP library spaCy for a human name ML project
