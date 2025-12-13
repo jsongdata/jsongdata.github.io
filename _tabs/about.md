@@ -5,7 +5,7 @@ order: 1
 ---
 
 ## Background
-Hi, I am Jae. I have work authorization in U.S. I graduated from Ohio State University with a B.S. in Data Analytics. I am currently pursuing M.S. CS for AI degree at Georgia Institute of Technology. While I am doing so, I am seeking a full-time position in AI|LLM internship. Outside of work, I enjoy working out, create digital contents, read books, and watch Netflix. 
+Hi, I am Roy. I have work authorization in U.S. I graduated from Ohio State University with a B.S. in Data Analytics. I am currently pursuing M.S. CS for AI degree at Georgia Institute of Technology. While I am doing so, I am seeking a full-time position in AI|LLM internship. Outside of work, I enjoy working out, create digital contents, read books, and watch Netflix. 
 
 ## What did I do at Ohio State University?
 During my college year at Ohio State, I took 4 math, 7 statistics, and 9 computer science classes, and I also held 2 research assistant positions and 1 internship. Through these experiences, I built a strong foundation to become a Data Scientist, and potentially an AI|LLM Engineer. However, the most valuable lesson I learned was collaborating with others and realizing how powerful teamwork can be.
