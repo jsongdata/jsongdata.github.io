@@ -52,7 +52,7 @@ During my college year at Ohio State, I took 4 math, 7 statistics, and 9 compute
 * Ohio State University, B.S in Data Analytics 2021 - 2025
 
 ## Linkedin
-Refer to [Linkedin](https://www.linkedin.com/in/jay-song-data)
+Refer to [Linkedin](https://www.linkedin.com/in/roy-lee-ai)
 
 
 
