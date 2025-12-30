@@ -19,6 +19,7 @@ tags: [llm, llmops, quantizaiton]     # TAG names should always be lowercase
     * **4-bit**: Saves 87.5% memory; the most recommended level for practical use.
 
 ## 3. Hardware & Purpose Selection Guide (Cheat Sheet)
+
 | Category | Recommended Tech | Key Characteristics |
 | :--- | :--- | :--- |
 | **NVIDIA GPU** | **GPTQ** | Extremely fast and easy to apply (Best for rapid testing). |
