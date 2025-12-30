@@ -1,5 +1,5 @@
 ---
-title: "How to Choose the Right LLM"
+title: "Intro to Multiprocessing"
 date: 2025-12-30
 categories: [LLMOps]
 tags: [llmops, python, multiprocessing]     # TAG names should always be lowercase
