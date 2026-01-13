@@ -3,6 +3,7 @@ title: "Understanding Gradient Descent in Deep Learning"
 date: 2025-01-12
 categories: [Deep Learning]
 tags: [deep learning]
+math: true
 ---
 
 ### 1. Mathematical Definition
