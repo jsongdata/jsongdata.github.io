@@ -32,6 +32,6 @@ However, as Windows OS became more advanced, hardware performance improved, and 
 <img src="https://content.any.run/tasks/f53742c4-e04a-4ccd-99e0-cf542f4b4878/download/screens/a8b10acc-5a21-4381-b458-c660d65faddd/image.jpeg" alt="고클린" style="max-width: 500px; width: 100%; height: auto;">
 
 ## My thoughts on them
-I have experimented with various antivirus and anti-malware programs in the past. However, I eventually stopped using them because of their intrusive advertisements and the frustrating irony that the software itself often felt overly intrusive due to ads and bundled features. Nowadays, Windows built-in security features are often sufficient for many everyday users, depending on their risk profile and usage behavior. Consequently, the trend of installing third-party antivirus software on personal computers has significantly declined.
+I have experimented with various antivirus and anti-malware programs in the past. However, I eventually stopped using them because of their intrusive advertisements and the frustrating irony that the software itself often felt overly intrusive (like Mcxxxx) due to ads and bundled features. Nowadays, Windows built-in security features are often sufficient for many everyday users, depending on their risk profile and usage behavior. Consequently, the trend of installing third-party antivirus software on personal computers has significantly declined.
 
 
