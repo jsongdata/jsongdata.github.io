@@ -7,7 +7,9 @@ math: true
 ---
 
 ## My Windows history
-My journey began in 1995 at the age of five with MS-DOS. Since my father ran a computer shop, I naturally learned how to assemble hardware and install software even before I started school. Since then, I have transitioned through Windows 95, 98, 2000, ME, XP, 7, 8, 10, and I currently use Windows 11 alongside macOS and a Synology Linux server. Although the most dramatic change I experienced was the transition from Windows 95 to 98, Windows XP remains my personal favorite. It holds a special place in my heart because it reminds me of my happiest and most carefree years as a student.
+My journey began at the age of five with MS-DOS. Although Windows was already widely used as the primary operating system in the United States, South Korea was still a relatively poor country at the time, and many households did not even own 386 or 486 computers. Even in 2006, many of my friends still did not have a computer at home. Since my father ran a computer shop, I naturally learned how to assemble hardware and install software before I even started elementary school.
+
+Since then, I have used Windows 95, 98, 2000, ME, XP, 7, 8, 10, and currently Windows 11, alongside macOS and a Synology Linux server. Although the most dramatic transition I experienced was from Windows 95 to Windows 98, Windows XP remains my personal favorite. It holds a special place in my heart because it reminds me of the happiest and most carefree years of my student life.
 
 <img src="https://miro.medium.com/v2/resize:fit:1200/format:webp/0*1v9oU4dmL4q3uFHJ.png" alt="MS-DOS" style="max-width: 200px; width: 100%; height: auto;">
 
@@ -18,8 +20,6 @@ My journey began in 1995 at the age of five with MS-DOS. Since my father ran a c
 <img src="https://gcp-na-images.contentstack.com/v3/assets/bltea6093859af6183b/blt1928a1cebadf4e97/69868a4855a8594f1fa80432/winxppro.png?branch=production" alt="XP" style="max-width: 200px; width: 100%; height: auto;">
 
 <img src="https://archive.org/download/win-7-pe/_screenshot1.Win7PE_x64.png" alt="7" style="max-width: 200px; width: 100%; height: auto;">
-
-
 
 ## Legendary Windows Games
 I still vividly remember my first MS-DOS games: a card-flipping memory game, a skiing game (SkiFree) where you flee from an abominable snowman, and a game where a cat (Neko) chases your mouse pointer. Later came Minesweeper, and Windows XP featured the masterpiece known as 3D Pinball: Space Cadet. Microsoft eventually stopped including Pinball because the original code lacked proper documentation. This made it nearly impossible for later engineers to fix bugs or update the game for 64-bit systems.
