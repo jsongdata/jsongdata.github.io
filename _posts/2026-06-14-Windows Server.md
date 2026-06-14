@@ -20,7 +20,7 @@ comments: true
 
 **11:26** — Use an app to check whether your computer meets the course requirements
 
-**12:00** — Download practice files: [http://cafe.naver.com/thisislinux](http://cafe.naver.com/thisislinux)
+**12:00** — Download practice files: [https://cafe.naver.com/thisislinux](https://cafe.naver.com/thisislinux)
 
 **13:03** — Overview of the course roadmap (curriculum), which consists of more than 70 lectures:
 
