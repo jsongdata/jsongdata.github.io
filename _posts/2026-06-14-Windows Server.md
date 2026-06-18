@@ -30,7 +30,14 @@ comments: true
 * Advanced hands-on projects using Active Directory
 * Virtualization with Hyper-V, Nano Server, and Windows containers
 
-<img src="assets/img/windows-server-roadmap.png" width="700" alt="Curriculum Roadmap">
-<p style="font-size: 14px; text-align: center; color: #666;">
-  Curriculum Roadmap
-</p>
+<details>
+  <summary style="cursor: pointer; color: blue; text-decoration: underline;">
+    Click here to view curriculum roadmap
+  </summary>
+  <div style="margin-top: 10px;">
+    <img src="assets/img/windows-server-roadmap.png" width="700" alt="Curriculum Roadmap">
+    <p style="font-size: 14px; text-align: center; color: #666;">
+      Curriculum Roadmap
+    </p>
+  </div>
+</details>
