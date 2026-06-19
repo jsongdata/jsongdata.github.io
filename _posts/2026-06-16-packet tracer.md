@@ -46,15 +46,6 @@ The key address used by a router is the **IP address**. A switch forwards frames
    - The router checks the **destination IP address** of the received packet.
    - It forwards the packet according to the path listed in the routing table.
 
-Example routing table:
-
-```text
-C 192.168.10.0/24 is directly connected, FastEthernet0/0
-C 192.168.20.0/24 is directly connected, FastEthernet0/1
-```
-
-Here, `C` means directly connected. The `192.168.10.0/24` network is connected through `FastEthernet0/0`, and the `192.168.20.0/24` network is connected through `FastEthernet0/1`.
-
 ### How Hosts Receive IP Addresses
 
 A host needs an IP address before it can communicate on a network. There are two common ways to assign an IP address.
@@ -71,8 +62,6 @@ A host needs an IP address before it can communicate on a network. There are two
 
 Packet Tracer is helpful because I can visually see that devices do not simply send raw data. Each layer adds or removes information as the packet moves through the network.
 
-When practicing in Packet Tracer, the flow becomes much clearer if I check which address each device uses to make forwarding decisions.
-
 ### Practice Screenshot
 
 <img src="/assets/packet tracer/packet-tracer-topology-2026-06-16.png" width="900" alt="Packet Tracer topology practice screenshot">
@@ -80,69 +69,6 @@ When practicing in Packet Tracer, the flow becomes much clearer if I check which
 <p style="font-size: 14px; text-align: center; color: #666;">
   My first network topology created in Packet Tracer
 </p>
-
-I built this topology by dragging three computers and one server into the workspace.
-
-## Lecture Notes: Prompt and Router Configuration Modes
-
-Reference lecture: [Network Construction and Operation Week 1_3](https://youtu.be/Ss4bawwJJJ8?list=PLMDODR7aOT4zOF1UlT9Y8N00_f9Uae3sj)
-
-In this lecture, I learned how to open the router CLI in Packet Tracer and how to understand the **prompt** and Cisco IOS **modes**.
-
-### Prompt
-
-A prompt shows that the device is ready to accept a command. On Cisco devices, the prompt also tells me the device name and the current mode.
-
-| Mode | Prompt | Meaning |
-|---|---|---|
-| User EXEC mode | `Router>` | A mode where only limited execution commands are available |
-| Privileged EXEC mode | `Router#` | A mode where all execution commands are available |
-| Global configuration mode | `Router(config)#` | A mode where device configuration commands are available |
-
-In User EXEC mode, available commands are limited. To configure a router, I first need to enter Privileged EXEC mode with the `enable` command.
-
-```text
-Router> enable
-Router#
-```
-
-Then I can enter Global Configuration mode with the `configure terminal` command.
-
-```text
-Router# configure terminal
-Enter configuration commands, one per line. End with CNTL/Z.
-Router(config)#
-```
-
-At this point, I can configure router interfaces, IP addresses, and routing settings.
-
-### IP Address Plan for This Topology
-
-The lecture topology is divided into two different networks by the router.
-
-Left LAN:
-
-```text
-Network: 192.168.10.0/24
-Router Fa0/0: 192.168.10.1
-PC1: 192.168.10.100
-PC2: 192.168.10.200
-Subnet Mask: 255.255.255.0
-Default Gateway: 192.168.10.1
-```
-
-Right LAN:
-
-```text
-Network: 192.168.20.0/24
-Router Fa0/1: 192.168.20.1
-PC: 192.168.20.100
-Server: 192.168.20.200
-Subnet Mask: 255.255.255.0
-Default Gateway: 192.168.20.1
-```
-
-The default gateway is the exit point used when a host needs to communicate with another network. Hosts on the left LAN use `192.168.10.1` as their gateway, and hosts on the right LAN use `192.168.20.1`.
 
 ### Router Interface Configuration Flow
 
@@ -207,3 +133,89 @@ ping 192.168.20.100
 <p style="font-size: 14px; text-align: center; color: #666;">
   Packet Tracer simulation mode showing ARP and ICMP traffic
 </p>
+
+## VLAN
+
+Today I reviewed VLAN fundamentals. A **VLAN**, or **Virtual LAN**, is a way to divide one physical switched network into multiple logical networks. Even if devices are connected to the same physical switches, VLANs can separate them as if they were on different networks.
+
+The key idea is:
+
+```text
+One VLAN = one broadcast domain = one logical network
+```
+
+Traffic that belongs to a specific VLAN is forwarded only through ports that belong to that VLAN. For example, VLAN 10 traffic stays inside VLAN 10, and VLAN 20 traffic stays inside VLAN 20 unless routing is configured between them.
+
+### How VLANs Work
+
+A switch still performs the same basic switching functions: learning, forwarding, and flooding. The difference is that it also checks the **VLAN number**.
+
+When a switch learns a MAC address, it does not only record the MAC address and port. It also records the VLAN ID.
+
+Example MAC address table:
+
+```text
+Vlan   Mac Address   Type      Ports
+10     AAA           DYNAMIC   Fa0/2
+20     BBB           DYNAMIC   Fa0/1
+20     CCC           DYNAMIC   Fa0/3
+10     DDD           DYNAMIC   Fa0/4
+```
+
+This means that the same switch can keep separate forwarding information for different VLANs. A frame in VLAN 10 is forwarded only within VLAN 10. A frame in VLAN 20 is forwarded only within VLAN 20.
+
+### VLAN Range
+
+VLAN ranges are important because some VLAN IDs are reserved.
+
+- VLAN 1 is the default VLAN and cannot be deleted.
+- VLANs 2 through 1001 can be added, changed, or deleted.
+- VLANs 1002 through 1005 are reserved for Token Ring and FDDI.
+
+### Advantages of VLANs
+
+VLANs reduce unnecessary network traffic because broadcast frames are limited to a smaller broadcast domain. Examples of broadcast traffic include ARP requests and NetBIOS name queries.
+
+VLANs also reduce security risk. If a worm, virus, or noisy broadcast spreads in one VLAN, the damage is more contained because the broadcast does not automatically reach every device in the physical network.
+
+Main benefits:
+
+- Reduced broadcast traffic
+- Smaller broadcast domains
+- Better logical separation
+- Easier network management
+- Reduced chance that a broadcast problem affects the entire switched network
+
+### Access Ports
+
+An **access port** carries traffic for a single VLAN. It is usually used for interfaces connected to end devices such as PCs, printers, and servers.
+
+
+
+### Trunk Ports
+
+A **trunk port** carries traffic for multiple VLANs over one physical link. Trunk ports are commonly used between switches or between a switch and a router.
+
+Without trunking, separate physical links would be needed for each VLAN. With trunking, VLAN 10 and VLAN 20 traffic can both travel across the same link while still remaining logically separate.
+
+Basic trunk configuration:
+
+```text
+Switch# configure terminal
+Switch(config)# interface fastEthernet 0/3
+Switch(config-if)# switchport mode trunk
+```
+
+The switch must be able to identify which VLAN each frame belongs to as it crosses the trunk link. That is the role of a trunking protocol.
+
+### Trunking Protocols
+
+Two trunking protocols were covered:
+
+**IEEE 802.1Q**
+
+802.1Q is the standard trunking protocol. It identifies VLAN traffic by inserting a tag field into the Layer 2 frame header. This tag tells the receiving switch which VLAN the frame belongs to.
+
+**ISL**
+
+ISL is Cisco proprietary. It identifies VLAN traffic by adding an ISL header and ISL FCS around the original frame. It is older and less commonly used than 802.1Q.
