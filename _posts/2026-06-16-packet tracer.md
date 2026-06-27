@@ -4,7 +4,11 @@ date: 2026-06-16
 categories: [Network]
 tags: [packet tracer, ccna, network]     # TAG names should always be lowercase
 comments: true
+mermaid: true
 ---
+
+<details markdown="1">
+<summary><strong>Network Fundamentals and Operation</strong></summary>
 
 ### Basic Network Devices
 
@@ -134,7 +138,10 @@ ping 192.168.20.100
   Packet Tracer simulation mode showing ARP and ICMP traffic
 </p>
 
-## VLAN
+</details>
+
+<details markdown="1">
+<summary><strong>VLAN</strong></summary>
 
 Today I reviewed VLAN fundamentals. A **VLAN**, or **Virtual LAN**, is a way to divide one physical switched network into multiple logical networks. Even if devices are connected to the same physical switches, VLANs can separate them as if they were on different networks.
 
@@ -219,3 +226,257 @@ Two trunking protocols were covered:
 **ISL**
 
 ISL is Cisco proprietary. It identifies VLAN traffic by adding an ISL header and ISL FCS around the original frame. It is older and less commonly used than 802.1Q.
+
+</details>
+
+<details markdown="1">
+<summary><strong>Subnetting</strong></summary>
+
+Reference lecture: [Network Construction and Operation Week 7_2: Subneting](https://youtu.be/-iMFsDdfoeI?list=PLMDODR7aOT4zOF1UlT9Y8N00_f9Uae3sj)
+
+Today I studied subnetting. **Subnetting** is the process of dividing one large IP network into smaller logical networks. The goal is to use IP addresses more efficiently and to create network sizes that match the number of hosts actually needed.
+
+Classful networks are often too large for real design needs:
+
+- **Class A** networks support a very large host space, roughly 16 million host IDs.
+- **Class B** networks support about 65,536 host IDs.
+- **Class C** networks support 256 addresses in the host portion.
+
+For example, if a network only needs about 50 hosts, using a full `/24` block with 256 addresses wastes many addresses. Subnetting lets me split that `/24` block into smaller pieces.
+
+```mermaid
+flowchart LR
+    A["One large /24 network<br/>192.168.10.0 - 192.168.10.255<br/>256 total addresses"]
+    B["Smaller subnet<br/>/25 = 128 addresses"]
+    C["Smaller subnet<br/>/26 = 64 addresses"]
+    D["Smaller subnet<br/>/27 = 32 addresses"]
+    A --> B
+    A --> C
+    A --> D
+```
+
+### Subnetting Concept
+
+Given this network:
+
+```text
+192.168.10.0/24
+```
+
+The `/24` prefix means the first 24 bits are the network portion and the last 8 bits are the host portion.
+
+```text
+Network portion: 192.168.10
+Host portion:    last octet
+Address count:   2^8 = 256
+```
+
+Subnetting borrows bits from the host portion and uses them as subnet bits. This creates more networks, but each network has fewer host addresses.
+
+```text
+/24 -> 8 host bits  -> 256 addresses
+/25 -> 7 host bits  -> 128 addresses per subnet
+/26 -> 6 host bits  -> 64 addresses per subnet
+/27 -> 5 host bits  -> 32 addresses per subnet
+```
+
+The practical rule is:
+
+```text
+More subnet bits = more subnets
+Fewer host bits  = fewer hosts per subnet
+```
+
+I can picture the last octet as the part being divided. The more subnet bits I borrow from the host portion, the smaller each subnet becomes.
+
+```mermaid
+flowchart TB
+    A["/24<br/>Host bits: 8<br/>Block size: 256"]
+    B["/25<br/>Borrow 1 bit<br/>2 blocks x 128"]
+    C["/26<br/>Borrow 2 bits<br/>4 blocks x 64"]
+    D["/27<br/>Borrow 3 bits<br/>8 blocks x 32"]
+    A --> B --> C --> D
+```
+
+### /25 Example
+
+If I borrow 1 host bit from `192.168.10.0/24`, the prefix becomes `/25`.
+
+```text
+Subnet mask: 255.255.255.128
+Block size:  128
+```
+
+This creates two subnets:
+
+| Subnet | Network Address | Usable Host Range | Broadcast Address |
+|---|---:|---:|---:|
+| `192.168.10.0/25` | `192.168.10.0` | `192.168.10.1 - 192.168.10.126` | `192.168.10.127` |
+| `192.168.10.128/25` | `192.168.10.128` | `192.168.10.129 - 192.168.10.254` | `192.168.10.255` |
+
+```mermaid
+flowchart LR
+    A["192.168.10.0/24<br/>256 total addresses"]
+    B["192.168.10.0/25<br/>0 - 127"]
+    C["192.168.10.128/25<br/>128 - 255"]
+    A --> B
+    A --> C
+```
+
+In each subnet, the first address is the network address and the last address is the broadcast address.
+
+```text
+192.168.10.0/25
+Network address:   192.168.10.0
+Usable hosts:      192.168.10.1 - 192.168.10.126
+Broadcast address: 192.168.10.127
+```
+
+### /26 Example
+
+If I borrow 2 host bits, the prefix becomes `/26`.
+
+```text
+Subnet mask: 255.255.255.192
+Block size:  64
+```
+
+This creates four subnets:
+
+| Subnet | Network Address | Usable Host Range | Broadcast Address |
+|---|---:|---:|---:|
+| `192.168.10.0/26` | `192.168.10.0` | `192.168.10.1 - 192.168.10.62` | `192.168.10.63` |
+| `192.168.10.64/26` | `192.168.10.64` | `192.168.10.65 - 192.168.10.126` | `192.168.10.127` |
+| `192.168.10.128/26` | `192.168.10.128` | `192.168.10.129 - 192.168.10.190` | `192.168.10.191` |
+| `192.168.10.192/26` | `192.168.10.192` | `192.168.10.193 - 192.168.10.254` | `192.168.10.255` |
+
+```mermaid
+flowchart LR
+    A["192.168.10.0/24"]
+    B["/26<br/>0 - 63"]
+    C["/26<br/>64 - 127"]
+    D["/26<br/>128 - 191"]
+    E["/26<br/>192 - 255"]
+    A --> B
+    A --> C
+    A --> D
+    A --> E
+```
+
+Each `/26` subnet has 64 total addresses. In normal host assignment, 62 are usable because one address is reserved for the network address and one for the broadcast address.
+
+### /27 Example
+
+If I borrow 3 host bits, the prefix becomes `/27`.
+
+```text
+Subnet mask: 255.255.255.224
+Block size:  32
+```
+
+The first `/27` subnet looks like this:
+
+```text
+192.168.10.0/27
+Network address:   192.168.10.0
+Usable hosts:      192.168.10.1 - 192.168.10.30
+Broadcast address: 192.168.10.31
+```
+
+The next subnet starts at `192.168.10.32`, then `192.168.10.64`, then `192.168.10.96`, and so on.
+
+```mermaid
+flowchart LR
+    A["/27 block 1<br/>0 - 31"]
+    B["/27 block 2<br/>32 - 63"]
+    C["/27 block 3<br/>64 - 95"]
+    D["/27 block 4<br/>96 - 127"]
+    E["..."]
+    A --> B --> C --> D --> E
+```
+
+### Subnetting Design Example
+
+The lecture example divides `192.168.10.0/24` for different floor requirements:
+
+```text
+1st floor: 100 hosts
+2nd floor: 50 hosts
+3rd floor: 30 hosts
+```
+
+I should choose the subnet size based on the required number of hosts.
+
+For 100 hosts:
+
+```text
+2^7 = 128 addresses
+Host ID bits = 7
+Prefix = /25
+Subnet mask = 255.255.255.128
+```
+
+For 50 hosts:
+
+```text
+2^6 = 64 addresses
+Host ID bits = 6
+Prefix = /26
+Subnet mask = 255.255.255.192
+```
+
+For 30 hosts:
+
+```text
+2^5 = 32 addresses
+Host ID bits = 5
+Prefix = /27
+Subnet mask = 255.255.255.224
+```
+
+A clean allocation can be:
+
+| Area | Host Need | Chosen Prefix | Address Range | Usable Host Range |
+|---|---:|---:|---:|---:|
+| 1st floor | 100 | `/25` | `192.168.10.0 - 192.168.10.127` | `192.168.10.1 - 192.168.10.126` |
+| 2nd floor | 50 | `/26` | `192.168.10.128 - 192.168.10.191` | `192.168.10.129 - 192.168.10.190` |
+| 3rd floor | 30 | `/27` | `192.168.10.192 - 192.168.10.223` | `192.168.10.193 - 192.168.10.222` |
+| Remaining space | - | `/27` | `192.168.10.224 - 192.168.10.255` | `192.168.10.225 - 192.168.10.254` |
+
+```mermaid
+flowchart LR
+    A["192.168.10.0/24<br/>256 total addresses"]
+    B["1st floor<br/>100 hosts needed<br/>192.168.10.0/25<br/>0 - 127"]
+    C["2nd floor<br/>50 hosts needed<br/>192.168.10.128/26<br/>128 - 191"]
+    D["3rd floor<br/>30 hosts needed<br/>192.168.10.192/27<br/>192 - 223"]
+    E["Remaining<br/>192.168.10.224/27<br/>224 - 255"]
+    A --> B
+    A --> C
+    A --> D
+    A --> E
+```
+
+This is the same logic as VLSM: allocate the largest subnet first, then continue with smaller subnets.
+
+### How to Think About Subnetting
+
+The most useful process for subnetting is:
+
+1. Start with the original network.
+2. Decide how many hosts each subnet needs.
+3. Find the smallest power of 2 that can cover that host requirement.
+4. Convert the host bits into a prefix length.
+5. Use the block size to list each network range.
+6. Identify the network address, usable host range, and broadcast address.
+
+Quick reference:
+
+```text
+/25 -> 128-address blocks -> mask 255.255.255.128
+/26 -> 64-address blocks  -> mask 255.255.255.192
+/27 -> 32-address blocks  -> mask 255.255.255.224
+```
+
+The key takeaway is that subnetting is not just binary math. It is a network design tool that lets me match address space to real requirements.
+
+</details>
